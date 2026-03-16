@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-_2v^nx1=7g41k%%o4$b!770m4+6$1ub1#4ahxqqt%usp@8xm@w
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['placement-portal-ng3k.onrender.com']
 
 
 # Application definition
