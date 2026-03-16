@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Placement Preparation Portal</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#1e3c72,#2a5298);
+color:white;
+height:100vh;
+display:flex;
+flex-direction:column;
+}
+
+/* NAVBAR */
+
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 60px;
+}
+
+.logo{
+font-size:22px;
+font-weight:bold;
+}
+
+.nav-links a{
+margin-left:20px;
+text-decoration:none;
+color:white;
+font-weight:500;
+}
+
+/* HERO SECTION */
+
+.hero{
+flex:1;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 60px;
+}
+
+.hero-text{
+max-width:500px;
+}
+
+.hero-text h1{
+font-size:48px;
+margin-bottom:20px;
+}
+
+.hero-text p{
+font-size:18px;
+margin-bottom:30px;
+line-height:1.6;
+}
+
+.buttons a{
+text-decoration:none;
+padding:12px 25px;
+border-radius:6px;
+margin-right:10px;
+font-weight:bold;
+}
+
+.login-btn{
+background:white;
+color:#2a5298;
+}
+
+.signup-btn{
+background:#27ae60;
+color:white;
+}
+
+/* IMAGE */
+
+.hero-img img{
+width:400px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+.hero{
+flex-direction:column;
+text-align:center;
+}
+
+.hero-img img{
+margin-top:20px;
+width:300px;
+}
+
+.nav-links{
+display:none;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+<div class="logo">
+Placement Portal
+</div>
+
+<div class="nav-links">
+<a href="/login">Login</a>
+<a href="/signup">Signup</a>
+</div>
+
+</div>
+
+<!-- HERO SECTION -->
+
+<div class="hero">
+
+<div class="hero-text">
+
+<h1>Prepare for Your Dream Job</h1>
+
+<p>
+Practice aptitude questions, take mock placement tests,
+and track your progress all in one platform.
+</p>
+
+<div class="buttons">
+
+<a class="login-btn" href="/login">Login</a>
+
+<a class="signup-btn" href="/signup">Create Account</a>
+
+</div>
+
+</div>
+
+<div class="hero-img">
+
+<img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
+
+</div>
+
+</div>
+
+</body>
+</html>

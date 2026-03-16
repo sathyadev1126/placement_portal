@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>User Profile</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f6f9;
+padding:40px;
+}
+
+.container{
+max-width:800px;
+margin:auto;
+}
+
+.profile-card{
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+margin-bottom:30px;
+}
+
+.profile-card h2{
+margin-bottom:10px;
+}
+
+.stats{
+display:flex;
+justify-content:space-between;
+margin-top:20px;
+}
+
+.stat-box{
+background:#ecf0f1;
+padding:15px;
+border-radius:8px;
+text-align:center;
+width:30%;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+background:white;
+box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+th, td{
+padding:12px;
+border-bottom:1px solid #ddd;
+text-align:center;
+}
+
+th{
+background:#3498db;
+color:white;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="profile-card">
+
+<h2>{{ user.username }}</h2>
+<p>Email: {{ user.email }}</p>
+
+<div class="stats">
+
+<div class="stat-box">
+<h3>{{ total_tests }}</h3>
+<p>Tests Taken</p>
+</div>
+
+<div class="stat-box">
+<h3>{{ best_score }}</h3>
+<p>Best Score</p>
+</div>
+
+<div class="stat-box">
+<h3>{{ avg_percentage }}%</h3>
+<p>Average</p>
+</div>
+
+</div>
+
+</div>
+
+<h3>Test History</h3>
+
+<table>
+
+<tr>
+<th>Date</th>
+<th>Score</th>
+<th>Total</th>
+<th>Percentage</th>
+</tr>
+
+{% for s in scores %}
+
+<tr>
+<td>{{ s.date }}</td>
+<td>{{ s.score }}</td>
+<td>{{ s.total }}</td>
+<td>{{ s.percentage }}%</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</body>
+</html>

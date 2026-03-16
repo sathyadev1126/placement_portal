@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Mock Placement Test</title>
+
+<style>
+
+body{
+font-family: Arial, Helvetica, sans-serif;
+background:#f4f6f9;
+margin:0;
+padding:0;
+}
+
+.header{
+background:#2c3e50;
+color:white;
+padding:15px 30px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.timer{
+background:#e74c3c;
+padding:8px 16px;
+border-radius:5px;
+}
+
+.container{
+max-width:800px;
+margin:auto;
+padding:30px;
+}
+
+.question-card{
+background:white;
+padding:25px;
+border-radius:8px;
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
+margin-bottom:20px;
+display:none;
+}
+
+.option{
+display:block;
+background:#ecf0f1;
+padding:10px;
+margin:8px 0;
+border-radius:5px;
+cursor:pointer;
+}
+
+.option:hover{
+background:#d6eaf8;
+}
+
+.buttons{
+text-align:center;
+margin-top:20px;
+}
+
+.next-btn, .submit-btn{
+background:#3498db;
+color:white;
+padding:10px 20px;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+.submit-btn{
+background:#27ae60;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+<h2>{{company}} Mock Placement Test</h2>
+
+<div class="timer">
+Time Remaining: <span id="timer">600</span> seconds
+</div>
+</div>
+
+<div class="container">
+
+<form method="post" action="/result/">
+
+{% csrf_token %}
+
+<!-- COMPANY NAME -->
+<input type="hidden" name="company" value="{{company}}">
+
+{% for q in questions %}
+
+<!-- QUESTION ID LIST -->
+<input type="hidden" name="question_ids" value="{{q.id}}">
+
+<div class="question-card">
+
+<p><b>{{forloop.counter}}. {{q.question}}</b></p>
+
+<label class="option">
+<input type="radio" name="{{q.id}}" value="{{q.option1}}">
+{{q.option1}}
+</label>
+
+<label class="option">
+<input type="radio" name="{{q.id}}" value="{{q.option2}}">
+{{q.option2}}
+</label>
+
+<label class="option">
+<input type="radio" name="{{q.id}}" value="{{q.option3}}">
+{{q.option3}}
+</label>
+
+<label class="option">
+<input type="radio" name="{{q.id}}" value="{{q.option4}}">
+{{q.option4}}
+</label>
+
+</div>
+
+{% endfor %}
+
+<div class="buttons">
+<button type="button" class="next-btn" onclick="nextQuestion()">Next</button>
+<button type="submit" class="submit-btn" style="display:none;">Submit Test</button>
+</div>
+
+</form>
+
+</div>
+
+
+<script>
+
+let current = 0;
+let questions = document.querySelectorAll(".question-card");
+
+questions[current].style.display = "block";
+
+function nextQuestion(){
+
+questions[current].style.display = "none";
+current++;
+
+if(current < questions.length){
+questions[current].style.display = "block";
+}
+
+if(current >= questions.length - 1){
+document.querySelector(".next-btn").style.display = "none";
+document.querySelector(".submit-btn").style.display = "inline-block";
+}
+
+}
+
+let time = 600;
+let timer = document.getElementById("timer");
+
+setInterval(function(){
+
+if(time > 0){
+time--;
+timer.innerHTML = time;
+}else{
+document.forms[0].submit();
+}
+
+},1000);
+
+</script>
+
+</body>
+</html>

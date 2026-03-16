@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Test Result</title>
+
+<style>
+
+body{
+font-family:Arial, Helvetica, sans-serif;
+background:#f4f6f9;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+margin:0;
+}
+
+.card{
+background:white;
+padding:40px;
+border-radius:10px;
+box-shadow:0 4px 12px rgba(0,0,0,0.1);
+text-align:center;
+width:400px;
+}
+
+h1{
+margin-top:0;
+color:#2c3e50;
+}
+
+.score{
+font-size:48px;
+font-weight:bold;
+color:#27ae60;
+margin:10px 0;
+}
+
+.stats{
+margin-top:20px;
+text-align:left;
+}
+
+.stats p{
+margin:6px 0;
+font-size:16px;
+}
+
+.progress{
+height:10px;
+background:#ecf0f1;
+border-radius:5px;
+margin-top:10px;
+overflow:hidden;
+}
+
+.progress-bar{
+height:10px;
+background:#27ae60;
+}
+
+
+.btn{
+display:inline-block;
+margin-top:25px;
+padding:12px 25px;
+background:#3498db;
+color:white;
+text-decoration:none;
+border-radius:6px;
+}
+
+.btn:hover{
+background:#2980b9;
+}
+
+</style>
+
+</head>
+
+<body>
+<form method="POST" action="/result/">
+{% csrf_token %}
+
+{% for q in questions %}
+
+<p>{{ q.question }}</p>
+
+<input type="hidden" name="question_ids" value="{{ q.id }}">
+
+<input type="radio" name="{{ q.id }}" value="A"> {{ q.option_a }} <br>
+<input type="radio" name="{{ q.id }}" value="B"> {{ q.option_b }} <br>
+<input type="radio" name="{{ q.id }}" value="C"> {{ q.option_c }} <br>
+<input type="radio" name="{{ q.id }}" value="D"> {{ q.option_d }} <br>
+
+{% endfor %}
+
+
+
+</form>
+<div class="card">
+
+<h1>Test Completed 🎉</h1>
+
+<p>Your Score</p>
+
+<div class="score">{{score}} / {{total}}</div>
+
+<div class="progress">
+<div class="progress-bar"></div>
+</div>
+
+<div class="stats">
+
+<p><strong>Correct Answers:</strong> {{score}}</p>
+
+<p><strong>Wrong Answers:</strong> {{wrong}}</p>
+
+<p><strong>Unanswered:</strong> {{unanswered}}</p>
+
+<p><strong>Percentage:</strong> {{percentage}}%</p>
+
+</div>
+
+<a class="btn" href="/dashboard">Return to Dashboard</a>
+
+</div>
+
+</body>
+</html>

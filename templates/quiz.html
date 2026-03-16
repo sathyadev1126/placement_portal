@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Aptitude Test</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
+}
+
+body{
+background:#f4f6f9;
+padding:40px;
+}
+
+/* HEADER */
+
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:30px;
+}
+
+.timer{
+background:#e74c3c;
+color:white;
+padding:10px 20px;
+border-radius:5px;
+}
+
+/* QUESTION CARD */
+
+.question-card{
+background:white;
+padding:25px;
+border-radius:10px;
+margin-bottom:20px;
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+.options{
+margin-top:10px;
+}
+
+.options label{
+display:block;
+padding:8px;
+cursor:pointer;
+}
+
+/* SUBMIT BUTTON */
+
+.submit-btn{
+display:block;
+width:200px;
+margin:30px auto;
+padding:12px;
+background:#27ae60;
+color:white;
+border:none;
+border-radius:6px;
+font-size:16px;
+cursor:pointer;
+}
+
+.submit-btn:hover{
+background:#219150;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+<h2>Aptitude Test</h2>
+<div class="timer">Time: <span id="time">300</span> sec</div>
+</div>
+
+<form method="post" action="/result/">
+
+{% csrf_token %}
+
+{% for q in questions %}
+
+<div class="question-card">
+
+<p><b>{{ forloop.counter }}. {{ q.question }}</b></p>
+
+<!-- ADD THIS LINE -->
+<input type="hidden" name="question_ids" value="{{ q.id }}">
+
+<div class="options">
+
+<label>
+<input type="radio" name="{{ q.id }}" value="{{ q.option1 }}">
+{{ q.option1 }}
+</label>
+
+<label>
+<input type="radio" name="{{ q.id }}" value="{{ q.option2 }}">
+{{ q.option2 }}
+</label>
+
+<label>
+<input type="radio" name="{{ q.id }}" value="{{ q.option3 }}">
+{{ q.option3 }}
+</label>
+
+<label>
+<input type="radio" name="{{ q.id }}" value="{{ q.option4 }}">
+{{ q.option4 }}
+</label>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+<button class="submit-btn">Submit Test</button>
+
+</form>
+<script>
+let time = 300;
+let timer = document.getElementById("time");
+
+let countdown = setInterval(function(){
+
+if(time > 0){
+time--;
+timer.innerHTML = time;
+}
+
+if(time == 0){
+clearInterval(countdown);
+alert("Time is over! Test submitted automatically.");
+document.querySelector("form").submit();
+}
+
+},1000);
+
+</script>
+
+</body>
+</html>
