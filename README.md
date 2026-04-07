@@ -22,7 +22,7 @@ The Placement Portal is a web-based application designed to manage student place
 
 ## 🛠️ Technologies Used
 - Frontend: HTML, CSS, JavaScript, React
-- Backend: (Add your backend here: Django / Node.js / etc.)
+- Backend: (Add your backend here: Django / .)
 - Database: (SQLite / MongoDB / MySQL)
 - Deployment: Render
 
